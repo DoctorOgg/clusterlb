@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+require 'bundler'
+Bundler.require(:default)
+require 'clusterlb'
+require 'colorize'
+require 'getoptLong'
+
+include Clusterlb
+
+# puts Clusterlb.config["clusterlb"]["sites"]
+
+def display_help
+	puts
+  puts "Lists/Enables/Disables Sites on specific load balancers"
+	puts "VERSION:        #{Clusterlb::VERSION}".colorize(:light_blue)
+	puts "CONFIG:         #{Clusterlb.config_file}".colorize(:light_blue)
+	puts "CLUSTERLB_HOME: #{ENV['CLUSTERLB_HOME']}".colorize(:light_blue)
+	puts
+	puts "Options:"
+	puts "-h or --help ".ljust(30) 		  	+ "-> Display this help message"
+	puts "-l or --list".ljust(30)         + "-> List LB Nodes"
+	puts "-m or --matrix".ljust(30)       + "-> Show Matrix of Enabled Sites and Nodes"
+	puts "-e or --enable".ljust(30)       + "-> Enable Site (used with -n for node)"
+	puts "-d or --disable".ljust(30)      + "-> Disable Site  (used with -n for node)"
+	puts "-n or --node".ljust(30)      		+ "-> node to enable or disable site on"
+	puts
+	exit 1
+end
+
+
+def parse_cli
+  opts = GetoptLong.new(
+    ["-h", "--help", GetoptLong::NO_ARGUMENT],
+    ["-e", "--enable", GetoptLong::REQUIRED_ARGUMENT],
+		["-n", "--node", GetoptLong::REQUIRED_ARGUMENT],
+		["-d", "--disable", GetoptLong::REQUIRED_ARGUMENT],
+    ["-m", "--matrix", GetoptLong::NO_ARGUMENT],
+    ["-l", "--list", GetoptLong::NO_ARGUMENT]
+  )
+
+  opts.each do |opt, arg|
+    case opt
+    when  "-h" || "--help"
+      display_help; exit
+		when "-m" || "--matrix"
+			Clusterlb.matrix_list; exit 1
+    when "-e" || "--enable"
+      @site = arg.strip().downcase(); @mode='enable'
+    when "-d" || "--disable"
+			@site = arg.strip().downcase(); @mode='disable'
+		when "-n" || "--node"
+			@node = arg.strip().downcase();
+    when "-l" || "--list"
+      puts Clusterlb.list_lbs; exit
+    end
+  end
+
+end
+
+
+
+parse_cli
+if @site.nil? || @mode.nil? || @node.nil?
+  display_help
+  exit 1
+end
+
+case @mode
+when "enable"
+	Clusterlb.enable_site(@site,@node)
+when "disable"
+	Clusterlb.disable_site(@site,@node)
+end

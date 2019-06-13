@@ -1,0 +1,32 @@
+PATH
+  remote: .
+  specs:
+    clusterlb (0.1.0)
+      colorize (~> 0.8.1)
+      console_table (~> 0.3.0)
+      fileutils (~> 1.2, >= 1.2.0)
+      json (~> 2.2, >= 2.2.0)
+      openssl (~> 2.1, >= 2.1.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.8.1)
+    console_table (0.3.0)
+      ruby-terminfo (~> 0.1)
+    fileutils (1.2.0)
+    json (2.2.0)
+    openssl (2.1.2)
+    rake (10.5.0)
+    ruby-terminfo (0.1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  clusterlb!
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.16.4
