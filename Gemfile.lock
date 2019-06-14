@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    clusterlb (0.1.0)
+    clusterlb (0.1.2)
+      bundler (~> 1.16)
       colorize (~> 0.8.1)
       console_table (~> 0.3.0)
       fileutils (~> 1.2, >= 1.2.0)
@@ -24,7 +25,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16)
   clusterlb!
   rake (~> 10.0)
 

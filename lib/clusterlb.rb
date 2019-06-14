@@ -32,6 +32,7 @@ module Clusterlb
   end
 
   def enable_site(site,node)
+
     Dir.chdir ENV["CLUSTERLB_HOME"]
     link_to_dir="#{config["clusterlb"]["sites_enabled"]}/#{node}"
 
