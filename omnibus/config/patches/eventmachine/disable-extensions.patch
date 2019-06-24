@@ -1,0 +1,11 @@
+--- eventmachine/eventmachine.gemspec.orig   2016-04-18 09:36:16.825799412 -0700
++++ eventmachine/eventmachine.gemspec        2016-04-18 09:36:26.878713044 -0700
+@@ -12,7 +12,7 @@
+   s.files = `git ls-files README.md CHANGELOG.md GNU LICENSE rakelib ext java lib docs`.split
+   s.test_files = `git ls-files tests examples`.split
+
+-  s.extensions = ["ext/extconf.rb", "ext/fastfilereader/extconf.rb"]
++  #s.extensions = ["ext/extconf.rb", "ext/fastfilereader/extconf.rb"]
+
+   s.add_development_dependency 'test-unit', '~> 2.0'
+   s.add_development_dependency 'rake-compiler', '~> 0.9.5'

@@ -1,0 +1,24 @@
+diff -U 2 libffi-3.2.1-orig/Makefile.am libffi-3.2.1/Makefile.am
+--- libffi-3.2.1-orig/Makefile.am	2018-10-09 12:59:24.000000000 -0700
++++ libffi-3.2.1/Makefile.am	2018-10-09 13:00:02.000000000 -0700
+@@ -72,8 +72,4 @@
+ 	'CFLAGS_FOR_BUILD=$(CFLAGS_FOR_BUILD)' \
+ 	'CFLAGS_FOR_TARGET=$(CFLAGS_FOR_TARGET)' \
+-	'INSTALL=$(INSTALL)' \
+-	'INSTALL_DATA=$(INSTALL_DATA)' \
+-	'INSTALL_PROGRAM=$(INSTALL_PROGRAM)' \
+-	'INSTALL_SCRIPT=$(INSTALL_SCRIPT)' \
+ 	'JC1FLAGS=$(JC1FLAGS)' \
+ 	'LDFLAGS=$(LDFLAGS)' \
+diff -U 2 libffi-3.2.1-orig/Makefile.in libffi-3.2.1/Makefile.in
+--- libffi-3.2.1-orig/Makefile.in	2018-10-09 12:59:29.000000000 -0700
++++ libffi-3.2.1/Makefile.in	2018-10-09 12:59:58.000000000 -0700
+@@ -667,8 +667,4 @@
+ 	'CFLAGS_FOR_BUILD=$(CFLAGS_FOR_BUILD)' \
+ 	'CFLAGS_FOR_TARGET=$(CFLAGS_FOR_TARGET)' \
+-	'INSTALL=$(INSTALL)' \
+-	'INSTALL_DATA=$(INSTALL_DATA)' \
+-	'INSTALL_PROGRAM=$(INSTALL_PROGRAM)' \
+-	'INSTALL_SCRIPT=$(INSTALL_SCRIPT)' \
+ 	'JC1FLAGS=$(JC1FLAGS)' \
+ 	'LDFLAGS=$(LDFLAGS)' \

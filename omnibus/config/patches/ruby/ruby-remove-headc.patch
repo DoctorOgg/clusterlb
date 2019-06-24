@@ -1,0 +1,10 @@
+diff -U 2 ruby-2.4.4-orig/configure ruby-2.4.4/configure
+--- ruby-2.4.4-orig/configure	2018-10-09 14:42:10.000000000 -0700
++++ ruby-2.4.4/configure	2018-10-09 14:40:33.000000000 -0700
+@@ -425,5 +425,5 @@
+ else
+ 
+-	$as_echo_n "   * $1:                     " | head -c26
++	$as_echo_n "   * $1:                     " | dd bs=1 count=26 2>/dev/null
+ 	if test "$FOLD"; then :
+ 

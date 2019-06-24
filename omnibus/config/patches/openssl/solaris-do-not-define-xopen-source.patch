@@ -1,0 +1,24 @@
+--- openssl/crypto/rand/randfile.c.old  2015-07-10 02:44:30.171640289 +0200
++++ openssl/crypto/rand/randfile.c      2015-07-10 02:54:20.081824839 +0200
+@@ -57,7 +57,7 @@
+  */
+
+ /* We need to define this to get macros like S_IFBLK and S_IFCHR */
+-#if !defined(OPENSSL_SYS_VXWORKS)
++#if !defined(OPENSSL_SYS_VXWORKS) && !defined(__sun)
+ # define _XOPEN_SOURCE 500
+ #endif
+
+@@ -82,6 +82,12 @@
+ # include <fcntl.h>
+ #endif
+
++#if defined(__sun)
++# if !defined(S_IFBLK) || !defined(S_IFCHR)
++#  error "We need S_IFBLK and S_IFCHR"
++# endif
++#endif
++
+ #ifdef _WIN32
+ # define stat    _stat
+ # define chmod   _chmod

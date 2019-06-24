@@ -1,9 +1,7 @@
 require "clusterlb/version"
-require 'bundler'
 require 'json'
 require 'console_table'
 require 'colorize'
-Bundler.require(:default)
 
 module Clusterlb
 
@@ -58,9 +56,9 @@ module Clusterlb
   end
 
   def matrix_list
-    table_config = [{:key=>:site, :size=>30, :title=>"Site"}]
+    table_config = [{:key=>:site, :size=>35, :title=>"Site"}]
     config["clusterlb"]["lb_nodes"].each do |node|
-      table_config.push( {:key=>node.to_sym, :size=>7, :title=>node, :justify=>:center})
+      table_config.push( {:key=>node.to_sym, :size=>9, :title=>node, :justify=>:center})
     end
     ConsoleTable.define(table_config) do |table|
         Dir.glob("#{ENV["CLUSTERLB_HOME"]}/#{config["clusterlb"]["sites"]}/*").each do |full_path_file|
@@ -73,10 +71,7 @@ module Clusterlb
 
         end
       end
-  #   {
-  #   :site=>"farts.sfdsdfsdf.sdfsdf",
-  #   :lb01=>"✓".colorize(:green)
-  # }
+
   end
 
   private

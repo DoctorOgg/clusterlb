@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Simple tools to manage a group of nginx lb's"
   spec.description   = "Simple tools to manage a group of nginx lb's with shared nfs configs"
   spec.license       = "MIT"
+  spec.required_ruby_version =  Gem::Requirement.new('>= 2.2')
 
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = "https://rubygems.org"
@@ -28,11 +29,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler", "~> 2.0.2"
+  spec.add_development_dependency "rake", "~> 12.3.2"
   spec.add_dependency 'colorize', '~> 0.8.1'
   spec.add_dependency 'console_table', '~> 0.3.0'
-  spec.add_dependency 'fileutils',  '~> 1.2', '>= 1.2.0'
+  spec.add_dependency 'fileutils',  '= 0.7.2'
   spec.add_dependency 'json',  '~> 2.2', '>= 2.2.0'
-  spec.add_dependency 'openssl',  '~> 2.1', '>= 2.1.2'
 end

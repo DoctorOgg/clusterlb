@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
-require 'bundler'
-# Bundler.require(:default)
 require 'clusterlb'
 require 'colorize'
-require 'getoptLong'
+require 'getoptlong'
 
 include Clusterlb
 

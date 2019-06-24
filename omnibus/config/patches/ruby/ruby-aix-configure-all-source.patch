@@ -1,0 +1,11 @@
+--- ruby-2.3.0/configure.orig	2016-03-09 13:54:46.837241733 -0800
++++ ruby-2.3.0/configure	2016-03-09 13:56:14.837243314 -0800
+@@ -7419,6 +7419,8 @@
+   test $ac_cv_safe_to_define___extensions__ = yes &&
+     $as_echo "#define __EXTENSIONS__ 1" >>confdefs.h
+ 
++  $as_echo "#undef _ALL_SOURCE" >>confdefs.h
++
+   $as_echo "#define _ALL_SOURCE 1" >>confdefs.h
+ 
+   $as_echo "#define _GNU_SOURCE 1" >>confdefs.h

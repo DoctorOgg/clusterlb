@@ -1,0 +1,38 @@
+Only in ruby-2.4.4-orig: .document
+Only in ruby-2.4.4-orig: .editorconfig
+Only in ruby-2.4.4-orig: .ext
+Only in ruby-2.4.4-orig: .gdbinit
+Only in ruby-2.4.4-orig: .gitattributes
+Only in ruby-2.4.4-orig: .gitignore
+Only in ruby-2.4.4-orig: .indent.pro
+Only in ruby-2.4.4-orig: .revision.time
+Only in ruby-2.4.4-orig: .travis.yml
+diff -U 2 ruby-2.4.4-orig/configure ruby-2.4.4/configure
+--- ruby-2.4.4-orig/configure	2018-10-10 13:32:53.000000000 -0700
++++ ruby-2.4.4/configure	2018-10-10 13:41:11.000000000 -0700
+@@ -5641,8 +5641,8 @@
+ # RUBY_UNIVERSAL_ARCH begin
+ ARCH_FLAG=`expr " $CXXFLAGS " : '.* \(-m[0-9][0-9]*\) '`
+-test ${CXXFLAGS+set} && CXXFLAGS=`echo "$CXXFLAGS" | sed -e 's/ *-arch  *[^ ]*//g' -e 's/ *-m32//g' -e 's/ *-m64//g'`
++#test ${CXXFLAGS+set} && CXXFLAGS=`echo "$CXXFLAGS" | sed -e 's/ *-arch  *[^ ]*//g' -e 's/ *-m32//g' -e 's/ *-m64//g'`
+ ARCH_FLAG=`expr " $CFLAGS " : '.* \(-m[0-9][0-9]*\) '`
+-test ${CFLAGS+set} && CFLAGS=`echo "$CFLAGS" | sed -e 's/ *-arch  *[^ ]*//g' -e 's/ *-m32//g' -e 's/ *-m64//g'`
+-test ${LDFLAGS+set} && LDFLAGS=`echo "$LDFLAGS" | sed -e 's/ *-arch  *[^ ]*//g' -e 's/ *-m32//g' -e 's/ *-m64//g'`
++#test ${CFLAGS+set} && CFLAGS=`echo "$CFLAGS" | sed -e 's/ *-arch  *[^ ]*//g' -e 's/ *-m32//g' -e 's/ *-m64//g'`
++#test ${LDFLAGS+set} && LDFLAGS=`echo "$LDFLAGS" | sed -e 's/ *-arch  *[^ ]*//g' -e 's/ *-m32//g' -e 's/ *-m64//g'`
+ unset universal_binary universal_archnames
+ if test ${target_archs+set}; then
+@@ -5701,5 +5701,5 @@
+     ARCH_FLAG=-m64 ;; #(
+   i[3-6]86) :
+-    ARCH_FLAG=-m32 ;; #(
++    ;; #(
+   *) :
+     as_fn_error $? "unknown target architecture: $target_archs" "$LINENO" 5
+@@ -5777,5 +5777,5 @@
+     ARCH_FLAG=-m64 ;; #(
+   i[3-6]86) :
+-    ARCH_FLAG=-m32 ;; #(
++    ;; #(
+   *) :
+     as_fn_error $? "unknown target architecture: $target_archs" "$LINENO" 5
