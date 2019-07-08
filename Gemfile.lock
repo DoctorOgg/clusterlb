@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    clusterlb (0.1.8)
+    clusterlb (0.1.9)
       aws-sdk (~> 3.0, >= 3.0.1)
       colorize (~> 0.8.1)
       console_table (~> 0.3.0)

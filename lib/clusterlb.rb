@@ -44,6 +44,8 @@ module Clusterlb
       puts "command not in the allowed list: #{allowed_commands.join(',')}".colorize(:red)
       exit 1
     end
+    cmd= "configtest" if cmd == "test"
+
     if node == "all"
       list_lbs.each do |h|
         hosts.push "#{h}.#{config["clusterlb"]["lb_nodes_dns_postfix"]}"
@@ -53,7 +55,7 @@ module Clusterlb
     end
 
     hosts.each do |h|
-      puts "h:".colorize(:light_blue)
+      puts "#{h}:".colorize(:light_blue)
       go_ssh(h,"sudo /etc/init.d/nginx #{cmd}",ENV['USER'])
       puts "--\n".colorize(:light_blue)
     end
