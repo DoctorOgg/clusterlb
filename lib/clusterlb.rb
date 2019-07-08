@@ -5,6 +5,8 @@ require 'colorize'
 require 'inifile'
 require 'aws-sdk'
 require 'fileutils'
+require 'net/ssh'
+
 
 
 module Clusterlb
@@ -54,7 +56,7 @@ module Clusterlb
       puts "h:".colorize(:light_blue)
       go_ssh(h,"sudo /etc/init.d/nginx #{cmd}",ENV['USER'])
       puts "--\n".colorize(:light_blue)
-    end 
+    end
   end
 
   def aws_config
