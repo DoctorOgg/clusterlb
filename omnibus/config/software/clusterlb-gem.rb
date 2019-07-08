@@ -1,5 +1,5 @@
 name "sensu-gem"
-default_version "0.1.5"
+default_version "0.1.7"
 
 dependency "ruby"
 dependency "ncurses"

@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+$LOAD_PATH << 'lib'
+require 'clusterlb'
+require 'colorize'
+require 'getoptlong'
+
+include Clusterlb
+
+def display_help
+	puts
+  puts "Tool for getting SSL Certificates from AWS S3 or Let's Encrypt"
+	puts "VERSION:        #{Clusterlb::VERSION}".colorize(:light_blue)
+	puts "CONFIG:         #{Clusterlb.config_file}".colorize(:light_blue)
+	puts "CLUSTERLB_HOME: #{ENV['CLUSTERLB_HOME']}".colorize(:light_blue)
+	puts
+	puts "Options:"
+	puts "-h or --help ".ljust(30) 		  							+ "-> Display this help message"
+	puts "-s or --s3".ljust(30)         							+ "-> Retrive an already stored certificate from AWS S3"
+	puts "-l or --letsencrypt".ljust(30)       				+ "-> use Let's Encrypt to retrive an certificate"
+	puts "-r or --renew-all-letsencrypt".ljust(30)    + "-> Attempt to renew all the Let's Encrypt Certificates"
+	puts "-f or --fqdn".ljust(30)      								+ "-> FQDN of site to retreve certificate for"
+	puts
+	exit 1
+end
+
+
+def parse_cli
+  opts = GetoptLong.new(
+    ["-h", "--help", GetoptLong::NO_ARGUMENT],
+    ["-s", "--s3", GetoptLong::NO_ARGUMENT],
+		["-l", "--letsencrypt", GetoptLong::NO_ARGUMENT],
+		["-r", "--renew-all-letsencrypt", GetoptLong::NO_ARGUMENT],
+    ["-f", "--fqdn", GetoptLong::REQUIRED_ARGUMENT]
+  )
+
+  opts.each do |opt, arg|
+    case opt
+    when  "-h" || "--help"
+      display_help; exit
+		when "-s" || "--s3"
+			@mode="s3"
+    when "-l" || "--letsencrypt"
+      display_help; exit
+    when "-r" || "--renew-all-letsencrypt"
+			display_help; exit
+		when "-f" || "--fqdn"
+			@fqdn = arg.strip().downcase();
+    end
+  end
+
+end
+
+parse_cli
+
+if @mode == "s3"
+	Clusterlb.get_s3_cert(@fqdn)
+	exit
+end

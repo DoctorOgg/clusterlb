@@ -35,4 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'console_table', '~> 0.3.0'
   spec.add_dependency 'fileutils',  '= 0.7.2'
   spec.add_dependency 'json',  '~> 2.2', '>= 2.2.0'
+  spec.add_dependency 'inifile',  '~> 3.0', '>= 3.0.0'
+  spec.add_dependency 'aws-sdk', '~> 3.0', '>= 3.0.1'
+  spec.add_dependency 'net-ssh', '~> 5.2'
 end

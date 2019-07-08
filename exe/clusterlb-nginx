@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+$LOAD_PATH << 'lib'
+require 'clusterlb'
+require 'colorize'
+require 'getoptlong'
+
+include Clusterlb
+
+def display_help
+	@node=nil
+
+	puts
+  puts "Nginx tool"
+	puts "VERSION:        #{Clusterlb::VERSION}".colorize(:light_blue)
+	puts "CONFIG:         #{Clusterlb.config_file}".colorize(:light_blue)
+	puts "CLUSTERLB_HOME: #{ENV['CLUSTERLB_HOME']}".colorize(:light_blue)
+	puts
+	puts "Options:"
+	puts "-h or --help ".ljust(30) 		  	+ "-> Display this help message"
+	puts "-a or --action".ljust(30)       + "-> Action to preform (test|stop|start|reload|restart)"
+	puts "-n or --node".ljust(30)      		+ "-> Apply Action to ONLY ONE NODE, if omitted actions apply to all Nodes"
+	puts "-l or --list".ljust(30)      		+ "-> List Nodes"
+	puts
+	exit
+end
+
+def parse_cli
+  opts = GetoptLong.new(
+    ["-h", "--help", GetoptLong::NO_ARGUMENT],
+    ["-a", "--action", GetoptLong::REQUIRED_ARGUMENT],
+		["-n", "--node", GetoptLong::REQUIRED_ARGUMENT],
+		["-l", "--list", GetoptLong::NO_ARGUMENT]
+  )
+
+  opts.each do |opt, arg|
+    case opt
+    when  "-h" || "--help"
+      display_help; exit;
+		when "-a" || "--action"
+			@mode = arg.strip().downcase();
+		when "-n" || "--node"
+			@node = arg.strip().downcase();
+		when "-l" || "--list"
+			puts Clusterlb.list_lbs; exit
+    end
+  end
+
+end
+
+parse_cli
+
+if @node.nil?
+	Clusterlb.cmd_nginx(@mode,"all")
+else
+	Clusterlb.cmd_nginx(@mode,@node)
+end
