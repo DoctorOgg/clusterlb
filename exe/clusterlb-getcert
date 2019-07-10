@@ -25,6 +25,8 @@ end
 
 
 def parse_cli
+	@mode=nil
+	@fqdn=nil
   opts = GetoptLong.new(
     ["-h", "--help", GetoptLong::NO_ARGUMENT],
     ["-s", "--s3", GetoptLong::NO_ARGUMENT],
@@ -40,9 +42,9 @@ def parse_cli
 		when "-s" || "--s3"
 			@mode="s3"
     when "-l" || "--letsencrypt"
-      display_help; exit
+      @mode="le"
     when "-r" || "--renew-all-letsencrypt"
-			display_help; exit
+			@mode="le_all"
 		when "-f" || "--fqdn"
 			@fqdn = arg.strip().downcase();
     end
@@ -54,5 +56,14 @@ parse_cli
 
 if @mode == "s3"
 	Clusterlb.get_s3_cert(@fqdn)
+	exit
+elsif @mode == "le_all"
+	Clusterlb.letsEncrypt("all")
+	exit
+elsif @mode == "le"
+	Clusterlb.letsEncrypt(@fqdn)
+	exit
+else
+	display_help
 	exit
 end

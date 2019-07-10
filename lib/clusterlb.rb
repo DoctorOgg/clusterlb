@@ -78,6 +78,43 @@ module Clusterlb
     })
   end
 
+  # :LetsEncrypt => {
+  #   :sites_enabled => [],
+  #   :challange_dir => "LetsEncrypt/challage",
+  #   :certificates_dir => "LetsEncrypt/certs",
+  #   :acme_home_dir => "LetsEncrypt/.acme.sh",
+  #   :acme_bin => "/srv/lb-config/lets-encrypt/.acme.sh"
+  # }
+  def letsEncrypt(fqdn) # fqdn | all
+    if fqdn == "all" && config["LetsEncrypt"]["sites_enabled"].count > 0
+      config["LetsEncrypt"]["sites_enabled"].each do |site|
+        letsEncrypt_getCert(site)
+      end
+      cmd_nginx("reload","all")
+    else
+      letsEncrypt_getCert(fqdn)
+      cmd_nginx("reload","all")
+    end
+
+  end
+
+
+  def letsEncrypt_getCert(fqdn)
+    le_env = {
+      "le_challange_dir" => "#{ENV["CLUSTERLB_HOME"]}/#{config["LetsEncrypt"]["challange_dir"]}",
+      "le_cert_dir"      => config["LetsEncrypt"]["certificates_dir"],
+      "acme"             => config["LetsEncrypt"]["acme_bin"],
+      "le_home"          => "#{ENV["CLUSTERLB_HOME"]}/#{config["LetsEncrypt"]["acme_home_dir"]}",
+    }
+    puts "Trying to renew Certificate: #{site}".colorize(:light_blue)
+    cmd = "sudo ${acme} --cron --home \"${le_home}\" --issue  -d ${1} -w ${le_challange_dir} \
+            --cert-file ${le_cert_dir}/#{site}.pem \
+            --key-file  ${le_cert_dir}/#{site}.key \
+            --fullchain-file ${le_cert_dir}/#{site}.full.pem"
+    system(le_env, cmd)
+    puts "--\n".colorize(:light_blue)
+  end
+
   def get_s3_cert(fqdn)
 
     ensure_dir_exitsts
@@ -209,15 +246,14 @@ module Clusterlb
         :sites_enabled => [],
         :challange_dir => "LetsEncrypt/challage",
         :certificates_dir => "LetsEncrypt/certs",
-        :acme_home_dir => "LetsEncrypt/.acme.sh"
+        :acme_home_dir => "LetsEncrypt/.acme.sh",
+        :acme_bin => "/srv/lb-config/lets-encrypt/.acme.sh"
       }
     }
     File.open(path,"w") do |f|
       f.write(JSON.pretty_generate(example_config))
     end
   end
-
-
 
 
 end

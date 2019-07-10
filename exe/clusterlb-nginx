@@ -8,6 +8,7 @@ include Clusterlb
 
 def display_help
 	@node=nil
+	@mode=nil
 
 	puts
   puts "Nginx tool"
@@ -49,7 +50,10 @@ end
 
 parse_cli
 
-if @node.nil?
+if @mode.nil? && @node.nil?
+	display_help
+	exit 1
+elsif @node.nil?
 	Clusterlb.cmd_nginx(@mode,"all")
 else
 	Clusterlb.cmd_nginx(@mode,@node)

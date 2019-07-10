@@ -1,5 +1,5 @@
 name "sensu-gem"
-default_version "0.1.10"
+default_version "0.1.12"
 
 dependency "ruby"
 dependency "ncurses"
@@ -19,7 +19,7 @@ build do
   bin_dir = File.join(install_dir, "bin")
   embedded_bin_dir = File.join(install_dir, "embedded", "bin")
 
-  ["clusterlb-nginx", "clusterlb-stectrl"].each do |exe|
+  ["clusterlb-nginx", "clusterlb-stectrl", "clusterlb-getcert"].each do |exe|
     link("#{embedded_bin_dir}/#{exe}", "#{bin_dir}/#{exe}")
   end
 
