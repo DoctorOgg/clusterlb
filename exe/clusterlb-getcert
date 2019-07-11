@@ -20,6 +20,9 @@ def display_help
 	puts "-r or --renew-all-letsencrypt".ljust(30)    + "-> Attempt to renew all the Let's Encrypt Certificates"
 	puts "-f or --fqdn".ljust(30)      								+ "-> FQDN of site to retreve certificate for"
 	puts
+	puts "Example nginx config:".colorize(:light_blue)
+	puts Clusterlb.letsEncryptExampleConfig
+	puts
 	exit 1
 end
 
