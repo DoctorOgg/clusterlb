@@ -19,6 +19,7 @@ def display_help
 	puts "-l or --letsencrypt".ljust(30)       				+ "-> use Let's Encrypt to retrive an certificate"
 	puts "-r or --renew-all-letsencrypt".ljust(30)    + "-> Attempt to renew all the Let's Encrypt Certificates"
 	puts "-f or --fqdn".ljust(30)      								+ "-> FQDN of site to retreve certificate for"
+	puts "-m or --monochrome".ljust(30)          			+ "-> Show results in monochrome"
 	puts
 	puts "Example nginx config:".colorize(:light_blue)
 	puts Clusterlb.letsEncryptExampleConfig
@@ -35,7 +36,8 @@ def parse_cli
     ["-s", "--s3", GetoptLong::NO_ARGUMENT],
 		["-l", "--letsencrypt", GetoptLong::NO_ARGUMENT],
 		["-r", "--renew-all-letsencrypt", GetoptLong::NO_ARGUMENT],
-    ["-f", "--fqdn", GetoptLong::REQUIRED_ARGUMENT]
+    ["-f", "--fqdn", GetoptLong::REQUIRED_ARGUMENT],
+		["-m", "--monochrome", GetoptLong::NO_ARGUMENT],
   )
 
   opts.each do |opt, arg|
@@ -50,6 +52,8 @@ def parse_cli
 			@mode="le_all"
 		when "-f" || "--fqdn"
 			@fqdn = arg.strip().downcase();
+		when "-m" || "--monochrome"
+        String.disable_colorization = true
     end
   end
 

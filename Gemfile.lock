@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    clusterlb (0.1.22)
+    clusterlb (0.1.24)
       aws-sdk (~> 3.0, >= 3.0.1)
       colorize (~> 0.8.1)
       console_table (~> 0.3.0)
@@ -14,7 +14,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.0.3)
-    aws-partitions (1.188.0)
+    aws-partitions (1.189.0)
     aws-sdk (3.0.1)
       aws-sdk-resources (~> 3)
     aws-sdk-acm (1.24.0)
@@ -35,7 +35,7 @@ GEM
     aws-sdk-apigatewaymanagementapi (1.8.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-apigatewayv2 (1.11.0)
+    aws-sdk-apigatewayv2 (1.12.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-applicationautoscaling (1.27.0)
@@ -223,7 +223,7 @@ GEM
     aws-sdk-elasticloadbalancingv2 (1.32.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-elasticsearchservice (1.24.0)
+    aws-sdk-elasticsearchservice (1.25.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-elastictranscoder (1.16.0)
@@ -268,7 +268,7 @@ GEM
     aws-sdk-health (1.18.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-iam (1.27.0)
+    aws-sdk-iam (1.28.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-importexport (1.14.0)
@@ -650,7 +650,7 @@ GEM
       aws-sdk-workmail (~> 1)
       aws-sdk-workspaces (~> 1)
       aws-sdk-xray (~> 1)
-    aws-sdk-robomaker (1.11.0)
+    aws-sdk-robomaker (1.12.0)
       aws-sdk-core (~> 3, >= 3.58.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-route53 (1.27.0)
