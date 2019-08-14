@@ -1,5 +1,5 @@
 name "clusterlb-gem"
-default_version "0.1.27"
+default_version "0.1.28"
 
 dependency "ruby"
 dependency "ncurses"
