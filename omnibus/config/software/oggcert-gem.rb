@@ -1,5 +1,5 @@
 name "oggcert-gem"
-default_version "0.1.1"
+default_version "0.1.2"
 
 dependency "ruby"
 dependency "ncurses"

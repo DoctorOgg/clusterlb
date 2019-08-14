@@ -1,5 +1,5 @@
-name "sensu-gem"
-default_version "0.1.24"
+name "clusterlb-gem"
+default_version "0.1.27"
 
 dependency "ruby"
 dependency "ncurses"

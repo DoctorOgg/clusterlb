@@ -3,9 +3,9 @@ require 'json'
 require 'console_table'
 require 'colorize'
 require 'inifile'
-require 'aws-sdk'
+# require 'aws-sdk'
 require 'fileutils'
-require 'net/ssh'
+# require 'net/ssh'
 
 
 
@@ -127,7 +127,7 @@ module Clusterlb
 
 
   def get_s3_cert(fqdn)
-
+    require 'aws-sdk-s3'
     ensure_dir_exitsts
     aws_config
     certs_dir="#{ENV["CLUSTERLB_HOME"]}/#{config["clusterlb"]["certificates_dir"]}"
@@ -195,7 +195,7 @@ module Clusterlb
       table_config.push( {:key=>node.to_sym, :size=>9, :title=>node, :justify=>:center})
     end
     ConsoleTable.define(table_config) do |table|
-        Dir.glob("#{ENV["CLUSTERLB_HOME"]}/#{config["clusterlb"]["sites"]}/*").each do |full_path_file|
+        Dir.glob("#{ENV["CLUSTERLB_HOME"]}/#{config["clusterlb"]["sites"]}/*").map(&:reverse).sort.map(&:reverse).each do |full_path_file|
           filename=full_path_file.split('/')[-1]
           result={:site=>filename}
           config["clusterlb"]["lb_nodes"].each do |node|
@@ -211,6 +211,7 @@ module Clusterlb
   private
 
   def go_ssh(hostname,cmd,username)
+    require 'net/ssh'
     Net::SSH.start(hostname, username, :keys_only => true ) do |ssh|
       puts ssh.exec!(cmd)
     end

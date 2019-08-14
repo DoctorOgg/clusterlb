@@ -3,7 +3,6 @@ $LOAD_PATH << 'lib'
 require 'clusterlb'
 require 'colorize'
 require 'getoptlong'
-require 'net/ssh'
 
 
 include Clusterlb
