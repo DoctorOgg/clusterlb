@@ -103,7 +103,7 @@ GEM
     iniparse (1.4.4)
     iostruct (0.0.4)
     ipaddress (0.8.3)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     json (2.2.0)
     kitchen-vagrant (1.6.0)
       test-kitchen (>= 1.4, < 3)
